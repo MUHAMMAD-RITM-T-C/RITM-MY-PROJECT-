@@ -80,20 +80,22 @@ body::before{
 /* ---- header / hero ---- */
 header{ text-align:center; padding:70px 20px 40px; }
 .logo-ring{
-  width:112px;height:112px;margin:0 auto 22px;
+  width:140px;height:140px;margin:0 auto 22px;
   border-radius:50%;
   border:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;
   position:relative;
   background:var(--panel-2);
+  overflow:hidden;
 }
 .logo-ring::before{
   content:"";position:absolute;inset:-6px;border-radius:50%;
   border:1px dashed rgba(255,106,0,0.35);
   animation:spin 30s linear infinite;
+  pointer-events:none;
 }
 @keyframes spin{to{transform:rotate(360deg);}}
-.logo-ring img{width:74px;height:74px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(255,106,0,0.35));}
+.logo-ring img{width:118px;height:118px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(255,106,0,0.35));}
 
 h1.brand{
   font-family:var(--f-display);
