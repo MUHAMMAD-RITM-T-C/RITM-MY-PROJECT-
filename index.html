@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RITM | خدمات ادیت و طراحی وب</title>
+
+<!-- فونت Vazirmatn برای فارسی + Poppins برای انگلیسی -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-dark:#0b0d12;
+    --bg-card:#12151c;
+    --accent:#6366f1;
+    --accent2:#22d3ee;
+    --text:#e8e9ee;
+    --text-dim:#9aa0ac;
+    --border:rgba(255,255,255,0.08);
+    --glass:rgba(255,255,255,0.06);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:radial-gradient(circle at top right, #1a1d29, #0b0d12 60%);
+    color:var(--text);
+    font-family:'Vazirmatn','Poppins',sans-serif;
+    min-height:100vh;
+    line-height:1.8;
+  }
+
+  [data-lang="en"] body, html[lang="en"]{
+    font-family:'Poppins','Vazirmatn',sans-serif;
+  }
+
+  a{text-decoration:none;color:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 6%;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    background:rgba(11,13,18,0.85);
+    backdrop-filter:blur(12px);
+    z-index:100;
+  }
+
+  .logo-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .logo-wrap img{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    object-fit:cover;
+  }
+
+  .logo-wrap span{
+    font-weight:800;
+    font-size:1.2rem;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .lang-switch{
+    display:flex;
+    gap:6px;
+    background:var(--glass);
+    padding:6px;
+    border-radius:12px;
+    border:1px solid var(--border);
+  }
+
+  .lang-switch button{
+    background:transparent;
+    border:none;
+    color:var(--text-dim);
+    padding:6px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:0.85rem;
+    transition:0.3s;
+  }
+
+  .lang-switch button.active{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#fff;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    text-align:center;
+    padding:80px 6% 60px;
+  }
+
+  .hero h1{
+    font-size:2.4rem;
+    font-weight:800;
+    margin-bottom:16px;
+  }
+
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .hero p{
+    color:var(--text-dim);
+    max-width:600px;
+    margin:0 auto;
+    font-size:1rem;
+  }
+
+  /* ---------- Pricing Section ---------- */
+  .section{
+    padding:50px 6%;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .section-title{
+    font-size:1.6rem;
+    font-weight:800;
+    margin-bottom:30px;
+    text-align:center;
+  }
+
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px;
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    box-shadow:0 20px 40px rgba(99,102,241,0.15);
+  }
+
+  .card .icon{font-size:1.8rem;margin-bottom:12px;display:block;}
+
+  .card h3{font-size:1.1rem;margin-bottom:8px;}
+
+  .card .price{
+    font-size:1.5rem;
+    font-weight:800;
+    color:var(--accent2);
+    margin:12px 0;
+  }
+
+  .card .desc{color:var(--text-dim);font-size:0.9rem;}
+
+  .badge-fire{
+    position:absolute;
+    top:14px;
+    left:14px;
+    background:linear-gradient(90deg,#f97316,#ef4444);
+    font-size:0.7rem;
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:600;
+  }
+
+  /* ---------- Delivery time note ---------- */
+  .note-box{
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+    margin-top:30px;
+    text-align:center;
+    color:var(--text-dim);
+  }
+
+  .note-box strong{color:var(--text);}
+
+  /* ---------- Video Upload Section ---------- */
+  .video-section{
+    text-align:center;
+  }
+
+  .video-btn{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    border:none;
+    color:#fff;
+    padding:16px 34px;
+    border-radius:14px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    transition:0.3s;
+  }
+
+  .video-btn:hover{
+    filter:brightness(1.1);
+    transform:scale(1.02);
+  }
+
+  .glass-bar{
+    display:none;
+    max-width:420px;
+    margin:24px auto 0;
+    background:var(--glass);
+    border:1px solid var(--border);
+    backdrop-filter:blur(14px);
+    border-radius:16px;
+    padding:18px 22px;
+    align-items:center;
+    gap:14px;
+    justify-content:center;
+    animation:fadeIn 0.4s ease;
+  }
+
+  .glass-bar.show{display:flex;}
+
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .glass-bar .tg-icon{
+    width:34px;height:34px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#22d3ee,#6366f1);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    flex-shrink:0;
+  }
+
+  .glass-bar .info{text-align:right;}
+  [data-lang="en"] .glass-bar .info{text-align:left;}
+
+  .glass-bar .title{font-size:0.75rem;color:var(--text-dim);}
+  .glass-bar .id{font-weight:700;font-size:0.95rem;color:var(--accent2);}
+
+  /* ---------- Form Section ---------- */
+  form{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  label{font-size:0.85rem;color:var(--text-dim);margin-bottom:-8px;}
+
+  input, select, textarea{
+    background:#181b23;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 14px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:0.9rem;
+    outline:none;
+    transition:0.3s;
+  }
+
+  input:focus, select:focus, textarea:focus{
+    border-color:var(--accent);
+  }
+
+  textarea{resize:vertical;min-height:100px;}
+
+  .submit-btn{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    border:none;
+    color:#fff;
+    padding:14px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:0.95rem;
+  }
+
+  .submit-btn:hover{filter:brightness(1.1);}
+
+  .form-success{
+    display:none;
+    background:rgba(34,211,238,0.1);
+    border:1px solid var(--accent2);
+    color:var(--accent2);
+    padding:14px;
+    border-radius:10px;
+    text-align:center;
+    font-size:0.9rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    padding:30px 6%;
+    border-top:1px solid var(--border);
+    color:var(--text-dim);
+    font-size:0.85rem;
+    margin-top:40px;
+  }
+
+  footer a{color:var(--accent2);font-weight:600;}
+
+  @media(max-width:600px){
+    .hero h1{font-size:1.7rem;}
+    header{padding:16px 4%;}
+    .section{padding:40px 4%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="logo-wrap">
+    <img src="assets/logo.jpg" alt="RITM Logo">
+    <span>RITM</span>
+  </div>
+  <div class="lang-switch">
+    <button class="active" data-set-lang="fa">فا</button>
+    <button data-set-lang="en">EN</button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h1 data-fa="💼 تعرفه خدمات <span class='grad'>ادیت و طراحی وب</span> 🌐" data-en="💼 <span class='grad'>Editing & Web Design</span> Pricing 🌐">
+    💼 تعرفه خدمات <span class="grad">ادیت و طراحی وب</span> 🌐
+  </h1>
+  <p data-fa="کیفیت بالا، پشتیبانی مناسب و تحویل سریع؛ همه در یک جا." data-en="High quality, solid support, and fast delivery — all in one place.">
+    کیفیت بالا، پشتیبانی مناسب و تحویل سریع؛ همه در یک جا.
+  </p>
+</section>
+
+<!-- ================= VIDEO EDITING PRICES ================= -->
+<section class="section">
+  <h2 class="section-title" data-fa="🎬 خدمات ادیت ویدئو 🎥" data-en="🎬 Video Editing Services 🎥">🎬 خدمات ادیت ویدئو 🎥</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="icon">💻</span>
+      <h3 data-fa="ادیت با Adobe Premiere Pro" data-en="Edit with Adobe Premiere Pro">ادیت با Adobe Premiere Pro</h3>
+      <div class="price">۶۰,۰۰۰ <span data-fa="تومان" data-en="Toman">تومان</span></div>
+      <div class="desc" data-fa="ادیت حرفه‌ای با نرم‌افزار پریمیر" data-en="Professional edit using Premiere Pro">ادیت حرفه‌ای با نرم‌افزار پریمیر</div>
+    </div>
+    <div class="card">
+      <span class="badge-fire" data-fa="محبوب 🔥" data-en="Popular 🔥">محبوب 🔥</span>
+      <span class="icon">📱</span>
+      <h3 data-fa="ادیت با گوشی موبایل" data-en="Edit with Mobile Phone">ادیت با گوشی موبایل</h3>
+      <div class="price">۱۰۰,۰۰۰ <span data-fa="تومان" data-en="Toman">تومان</span></div>
+      <div class="desc" data-fa="ادیت سریع و خلاقانه با موبایل" data-en="Fast & creative mobile editing">ادیت سریع و خلاقانه با موبایل</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HTML DEV PRICES ================= -->
+<section class="section">
+  <h2 class="section-title" data-fa="💻 خدمات برنامه‌نویسی HTML 🧩" data-en="💻 Web Development Services 🧩">💻 خدمات برنامه‌نویسی HTML 🧩</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="icon">🚀</span>
+      <h3 data-fa="طراحی تک‌صفحه HTML + آنلاین‌سازی" data-en="Single HTML Page + Deployment">طراحی تک‌صفحه HTML + آنلاین‌سازی</h3>
+      <div class="price">۲۵۰,۰۰۰ <span data-fa="تومان" data-en="Toman">تومان</span></div>
+      <div class="desc" data-fa="طراحی یک صفحه کامل به همراه آنلاین‌سازی پروژه" data-en="One complete page with full deployment">طراحی یک صفحه کامل به همراه آنلاین‌سازی پروژه</div>
+    </div>
+    <div class="card">
+      <span class="badge-fire" data-fa="پیشنهاد ویژه 🔥" data-en="Best Value 🔥">پیشنهاد ویژه 🔥</span>
+      <span class="icon">🔥</span>
+      <h3 data-fa="پروژه کامل HTML + CSS + JS + آنلاین‌سازی" data-en="Full Project HTML + CSS + JS + Deployment">پروژه کامل HTML + CSS + JS + آنلاین‌سازی</h3>
+      <div class="price">۴۰۰,۰۰۰ <span data-fa="تومان" data-en="Toman">تومان</span></div>
+      <div class="desc" data-fa="طراحی کامل پروژه به همراه آنلاین‌سازی" data-en="Full project design with complete deployment">طراحی کامل پروژه به همراه آنلاین‌سازی</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong data-fa="⏳ زمان تحویل ⏱️" data-en="⏳ Delivery Time ⏱️">⏳ زمان تحویل ⏱️</strong>
+    <p data-fa="مدت زمان انجام هر پروژه با توجه به حجم، پیچیدگی و جزئیات سفارش متفاوت است و پس از بررسی درخواست، زمان دقیق تحویل اعلام خواهد شد. 📅"
+       data-en="Delivery time varies based on project size and complexity. Exact timing will be shared after reviewing your request. 📅">
+      مدت زمان انجام هر پروژه با توجه به حجم، پیچیدگی و جزئیات سفارش متفاوت است و پس از بررسی درخواست، زمان دقیق تحویل اعلام خواهد شد. 📅
+    </p>
+  </div>
+</section>
+
+<!-- ================= SPECIAL VIDEO SECTION ================= -->
+<section class="section video-section">
+  <h2 class="section-title" data-fa="🎥 ویدیوی خاصی دارید؟" data-en="🎥 Have a Special Video?">🎥 ویدیوی خاصی دارید؟</h2>
+  <p data-fa="اگه ویدِو خاصی دارید، آن را برای ما ارسال کنید." data-en="If you have a special video, send it to us." style="color:var(--text-dim);margin-bottom:20px;">
+    اگه ویدِو خاصی دارید، آن را برای ما ارسال کنید.
+  </p>
+  <button class="video-btn" id="sendVideoBtn" data-fa="📤 ارسال ویدیو" data-en="📤 Send Video">📤 ارسال ویدیو</button>
+
+  <div class="glass-bar" id="glassBar">
+    <div class="tg-icon">✈️</div>
+    <div class="info">
+      <div class="title" data-fa="ارسال ویدیو" data-en="Send Video">ارسال ویدیو</div>
+      <div class="id"><a href="https://t.me/IamRITM" target="_blank" style="color:var(--accent2);text-decoration:none;">@IamRITM</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORDER FORM ================= -->
+<section class="section">
+  <h2 class="section-title" data-fa="📝 ثبت سفارش" data-en="📝 Place an Order">📝 ثبت سفارش</h2>
+
+  <form id="orderForm" action="https://formspree.io/f/mykqrbdp" method="POST">
+    <label data-fa="نام و نام خانوادگی" data-en="Full Name">نام و نام خانوادگی</label>
+    <input type="text" name="name" required placeholder="مثلا: محمد">
+
+    <label data-fa="آیدی تلگرام" data-en="Telegram ID">آیدی تلگرام</label>
+    <input type="text" name="telegram" required placeholder="@username">
+
+    <label data-fa="نوع خدمات مورد نیاز" data-en="Service Type">نوع خدمات مورد نیاز</label>
+    <select name="service" required>
+      <option value="" data-fa="انتخاب کنید" data-en="Select an option">-- انتخاب کنید --</option>
+      <option value="premiere">ادیت با Premiere Pro - ۶۰,۰۰۰ تومان</option>
+      <option value="mobile-edit">ادیت با موبایل - ۱۰۰,۰۰۰ تومان</option>
+      <option value="single-html">تک‌صفحه HTML - ۲۵۰,۰۰۰ تومان</option>
+      <option value="full-project">پروژه کامل HTML+CSS+JS - ۴۰۰,۰۰۰ تومان</option>
+    </select>
+
+    <label data-fa="توضیحات پروژه" data-en="Project Details">توضیحات پروژه</label>
+    <textarea name="details" placeholder="جزئیات، رفرنس‌ها، خواسته‌های خاص..."></textarea>
+
+    <button type="submit" class="submit-btn" data-fa="ارسال سفارش" data-en="Submit Order">ارسال سفارش</button>
+    <div class="form-success" id="formSuccess" data-fa="✅ سفارش شما با موفقیت ارسال شد!" data-en="✅ Your order was submitted successfully!">
+      ✅ سفارش شما با موفقیت ارسال شد!
+    </div>
+  </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p data-fa="© تمامی حقوق برای RITM محفوظ است." data-en="© All rights reserved by RITM.">© تمامی حقوق برای RITM محفوظ است.</p>
+  <p>
+    <span data-fa="تلگرام: " data-en="Telegram: ">تلگرام: </span>
+    <a href="https://telegram.me/RITM_FreeLancer" target="_blank">@RITM_FreeLancer</a>
+  </p>
+</footer>
+
+<script>
+  // ---------- Language Switching ----------
+  const langButtons = document.querySelectorAll('.lang-switch button');
+  const htmlTag = document.documentElement;
+
+  function setLanguage(lang){
+    document.querySelectorAll('[data-fa]').forEach(el=>{
+      const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fa');
+      if(text) el.innerHTML = text;
+    });
+
+    langButtons.forEach(b=>b.classList.remove('active'));
+    document.querySelector(`[data-set-lang="${lang}"]`).classList.add('active');
+
+    if(lang === 'en'){
+      htmlTag.setAttribute('lang','en');
+      htmlTag.setAttribute('dir','ltr');
+    } else {
+      htmlTag.setAttribute('lang','fa');
+      htmlTag.setAttribute('dir','rtl');
+    }
+
+    localStorage.setItem('ritm-lang', lang);
+  }
+
+  langButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=> setLanguage(btn.dataset.setLang));
+  });
+
+  // بارگذاری زبان ذخیره‌شده
+  const savedLang = localStorage.getItem('ritm-lang') || 'fa';
+  setLanguage(savedLang);
+
+  // ---------- Send Video Button ----------
+  const sendVideoBtn = document.getElementById('sendVideoBtn');
+  const glassBar = document.getElementById('glassBar');
+
+  sendVideoBtn.addEventListener('click', ()=>{
+    glassBar.classList.toggle('show');
+  });
+
+  // ---------- Form Submit (AJAX to Formspree) ----------
+  const orderForm = document.getElementById('orderForm');
+  const formSuccess = document.getElementById('formSuccess');
+
+  orderForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const formData = new FormData(orderForm);
+
+    try{
+      const response = await fetch(orderForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        formSuccess.style.display = 'block';
+        orderForm.reset();
+      } else {
+        alert('مشکلی پیش اومد، دوباره امتحان کن.');
+      }
+    } catch(err){
+      alert('خطا در ارسال. اتصال اینترنت رو چک کن.');
+    }
+  });
+</script>
+
+</body>
+</html>
